@@ -1,0 +1,104 @@
+package com.mycompany.calculator;
+
+import javax.swing.JOptionPane;
+/**
+ *
+ * @author NCGC
+ */
+public class Calculator {
+
+    public static void main(String[] args) {
+        showMenu();
+    }
+
+    private static void showMenu() {
+        String[] options = {
+                "Addition",
+                "Subtraction",
+                "Multiplication",
+                "Division",
+                "Exit"
+        };
+
+        int choice = JOptionPane.showOptionDialog(
+                null,
+                "Select an operation:",
+                "Calculator",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[0]);
+
+        performOperation(choice);
+    }
+
+    private static void performOperation(int choice) {
+        switch (choice) {
+            case 0: // Addition
+                performAddition();
+                break;
+            case 1: // Subtraction
+                performSubtraction();
+                break;
+            case 2: // Multiplication
+                performMultiplication();
+                break;
+            case 3: // Division
+                performDivision();
+                break;
+            case 4: // Exit
+                System.exit(0);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private static void performAddition() {
+        double num1 = getNumber("Enter the first number:");
+        double num2 = getNumber("Enter the second number:");
+        double result = num1 + num2;
+        showMessage("Result: " + result);
+        showMenu();
+    }
+
+    private static void performSubtraction() {
+        double num1 = getNumber("Enter the first number:");
+        double num2 = getNumber("Enter the second number:");
+        double result = num1 - num2;
+        showMessage("Result: " + result);
+        showMenu();
+    }
+
+    private static void performMultiplication() {
+        double num1 = getNumber("Enter the first number:");
+        double num2 = getNumber("Enter the second number:");
+        double result = num1 * num2;
+        showMessage("Result: " + result);
+        showMenu();
+    }
+
+    private static void performDivision() {
+        double num1 = getNumber("Enter the numerator:");
+        double num2 = getNumber("Enter the denominator:");
+
+        if (num2 != 0) {
+            double result = num1 / num2;
+            showMessage("Result: " + result);
+        } else {
+            showMessage("Error: Cannot divide by zero.");
+        }
+
+        showMenu();
+    }
+
+    private static double getNumber(String prompt) {
+        String input = JOptionPane.showInputDialog(prompt);
+        return Double.parseDouble(input);
+    }
+
+    private static void showMessage(String message) {
+        JOptionPane.showMessageDialog(null, message);
+    }
+}
